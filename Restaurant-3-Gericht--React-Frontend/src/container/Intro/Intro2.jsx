@@ -3,9 +3,9 @@
 /* eslint-disable no-lonely-if */
 import React from 'react';
 import './Intro.css';
-import { meal } from '../../constants';
+import { homevideo1 } from '../../constants';
 
-const Intro = () => {
+const Intro2 = () => {
   const vidRef = React.useRef();
   const containerRef = React.useRef();
 
@@ -42,7 +42,7 @@ const Intro = () => {
     <div className="app__video" ref={containerRef}>
       <video
         ref={vidRef}
-        src={meal}
+        src={homevideo1}
         type="video/mp4"
         loop
         controls={false}
@@ -52,4 +52,4 @@ const Intro = () => {
   );
 };
 
-export default Intro;
+export default Intro2;
