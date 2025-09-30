@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/no-duplicates */
 /* eslint-disable quotes */
@@ -87,7 +88,7 @@ const Intro2 = () => {
           className="app__video-overlay"
           style={{ opacity: textOpacity }}
         >
-          <div className="app__specialMenu flex__center section__padding" id="menu" style={{ background: 'transparent' }}>
+          <div className="app__specialMenu flex__center section__padding menu-overlay-container" id="menu" style={{ background: 'transparent', width: '100%', maxWidth: '100%', overflow: 'hidden' }}>
             <motion.div 
               className="app__specialMenu-title"
               initial={{ opacity: 0, y: 50 }}
@@ -95,8 +96,8 @@ const Intro2 = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <SubHeading title="Menu that fits your palatte" />
-              <h1 className="headtext__cormorant">Today&apos;s Special</h1>
+              <SubHeading title="Freshly Baked Every Morning" />
+              <h1 className="headtext__cormorant" style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', lineHeight: '1.2' }}>Channel9's Signature Delights</h1>
             </motion.div>
 
             <motion.div 
@@ -105,6 +106,7 @@ const Intro2 = () => {
               whileInView={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.4 }}
               viewport={{ once: true }}
+              style={{ width: '100%', maxWidth: '1400px' }}
             >
               <motion.div 
                 className="app__specialMenu-menu_wine flex__center"
@@ -150,7 +152,7 @@ const Intro2 = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                View More
+                Explore Full Menu
               </motion.button>
             </motion.div>
           </div>
