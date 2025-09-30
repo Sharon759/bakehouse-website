@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/no-duplicates */
 /* eslint-disable quotes */
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable eol-last */
@@ -6,8 +8,9 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import './Intro.css';
-import { homevideo1 } from '../../constants';
-import { SubHeading } from '../../components';
+import { meal } from '../../constants';
+import { SubHeading, MenuItem } from '../../components';
+import { data } from '../../constants';
 
 const Intro2 = () => {
   const vidRef = React.useRef();
@@ -71,7 +74,7 @@ const Intro2 = () => {
         >
           <video
             ref={vidRef}
-            src={homevideo1}
+            src={meal}
             type="video/mp4"
             loop
             controls={false}
@@ -84,52 +87,70 @@ const Intro2 = () => {
           className="app__video-overlay"
           style={{ opacity: textOpacity }}
         >
-          <div className="app__header app__wrapper section__padding" id="home">
+          <div className="app__specialMenu flex__center section__padding" id="menu" style={{ background: 'transparent' }}>
             <motion.div 
-              className="app__wrapper_info"
-              style={{ y }}
+              className="app__specialMenu-title"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
             >
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                viewport={{ once: true }}
-              >
-                <SubHeading title="Chase the new flavour" />
-              </motion.div>
-              
-              <motion.h1 
-                className="app__header-h1"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                viewport={{ once: true }}
-              >
-                The Key To Fine Dining
-              </motion.h1>
-              
-              <motion.p 
-                className="p__opensans" 
-                style={{ margin: '2rem 0' }}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+              <SubHeading title="Menu that fits your palatte" />
+              <h1 className="headtext__cormorant">Today&apos;s Special</h1>
+            </motion.div>
+
+            <motion.div 
+              className="app__specialMenu-menu"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.4 }}
+              viewport={{ once: true }}
+            >
+              <motion.div 
+                className="app__specialMenu-menu_wine flex__center"
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
                 viewport={{ once: true }}
               >
-                Sit tellus lobortis sed senectus vivamus molestie. Condimentum volutpat morbi facilisis quam scelerisque sapien. Et, penatibus aliquam amet tellus
-              </motion.p>
-              
+                <p className="app__specialMenu-menu_heading">Breads & Pastries</p>
+                <div className="app__specialMenu_menu_items">
+                  {data.wines.map((wine, index) => (
+                    <MenuItem key={wine.title + index} title={wine.title} price={wine.price} tags={wine.tags} />
+                  ))}
+                </div>
+              </motion.div>
+
+              <motion.div 
+                className="app__specialMenu-menu_cocktails flex__center"
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <p className="app__specialMenu-menu_heading">Cakes & Desserts</p>
+                <div className="app__specialMenu_menu_items">
+                  {data.cocktails.map((cocktail, index) => (
+                    <MenuItem key={cocktail.title + index} title={cocktail.title} price={cocktail.price} tags={cocktail.tags} />
+                  ))}
+                </div>
+              </motion.div>
+            </motion.div>
+
+            <motion.div 
+              style={{ marginTop: 15 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              viewport={{ once: true }}
+            >
               <motion.button 
                 type="button" 
                 className="custom__button"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
-                viewport={{ once: true }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Explore Menu
+                View More
               </motion.button>
             </motion.div>
           </div>

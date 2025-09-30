@@ -8,9 +8,9 @@ import Intro2 from './container/Intro/Intro2';
 const App = () => (
   <div>
     <Navbar />
-    <Intro2 />
-    <AboutUs />
     <Intro />
+    <AboutUs />
+    <Intro2 />
     <SpecialMenu />
     {/* <Laurels />
     <Gallery /> */}
