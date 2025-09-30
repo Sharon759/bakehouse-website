@@ -4,7 +4,7 @@
 import React from 'react';
 
 import { meal } from '../../constants';
-import './Intro.css';
+
 
 const Intro = () => {
   const vidRef = React.useRef();
