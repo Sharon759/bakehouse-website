@@ -4,8 +4,12 @@
     justify-content: space-between;
     align-items: center;
     background: var(--color-black);
-
     padding: 1rem 2rem;
+    
+    /* Sticky navbar */
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .app__navbar-logo {
