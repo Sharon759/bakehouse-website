@@ -15,12 +15,14 @@ const Intro2 = () => {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"]
+    offset: ["start start", "end start"]
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 1, 0.95]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const textOpacity = useTransform(scrollYProgress, [0, 0.3, 0.5], [1, 0, 0]);
+  const videoScale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.6, 0.4]);
+  const videoY = useTransform(scrollYProgress, [0, 0.5, 1], [0, 0, -50]);
+  const borderRadius = useTransform(scrollYProgress, [0, 0.5, 1], [0, 20, 30]);
 
   React.useEffect(() => {
     const observer = new IntersectionObserver(
@@ -52,71 +54,87 @@ const Intro2 = () => {
   }, []);
 
   return (
-    <div className="app__video-container" ref={containerRef}>
-      <motion.video
-        ref={vidRef}
-        src={homevideo1}
-        type="video/mp4"
-        loop
-        controls={false}
-        muted
-        className="app__video-background"
-        style={{ scale }}
-      />
-      <motion.div 
-        className="app__video-overlay"
-        style={{ opacity }}
-      >
-        <div className="app__header app__wrapper section__padding" id="home">
-          <motion.div 
-            className="app__wrapper_info"
-            style={{ y }}
-          >
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
+    <div className="app__video-container" ref={containerRef} style={{ height: '200vh', background: 'var(--color-black)' }}>
+      <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--color-black)' }}>
+        <motion.div
+          style={{
+            scale: videoScale,
+            y: videoY,
+            borderRadius,
+            overflow: 'hidden',
+            width: '100%',
+            height: '100%',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+          }}
+        >
+          <video
+            ref={vidRef}
+            src={homevideo1}
+            type="video/mp4"
+            loop
+            controls={false}
+            muted
+            className="app__video-background"
+          />
+        </motion.div>
+        
+        <motion.div 
+          className="app__video-overlay"
+          style={{ opacity: textOpacity }}
+        >
+          <div className="app__header app__wrapper section__padding" id="home">
+            <motion.div 
+              className="app__wrapper_info"
+              style={{ y }}
             >
-              <SubHeading title="Chase the new flavour" />
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                <SubHeading title="Chase the new flavour" />
+              </motion.div>
+              
+              <motion.h1 
+                className="app__header-h1"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                viewport={{ once: true }}
+              >
+                The Key To Fine Dining
+              </motion.h1>
+              
+              <motion.p 
+                className="p__opensans" 
+                style={{ margin: '2rem 0' }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                viewport={{ once: true }}
+              >
+                Sit tellus lobortis sed senectus vivamus molestie. Condimentum volutpat morbi facilisis quam scelerisque sapien. Et, penatibus aliquam amet tellus
+              </motion.p>
+              
+              <motion.button 
+                type="button" 
+                className="custom__button"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Explore Menu
+              </motion.button>
             </motion.div>
-            
-            <motion.h1 
-              className="app__header-h1"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: true }}
-            >
-              The Key To Fine Dining
-            </motion.h1>
-            
-            <motion.p 
-              className="p__opensans" 
-              style={{ margin: '2rem 0' }}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              viewport={{ once: true }}
-            >
-              Sit tellus lobortis sed senectus vivamus molestie. Condimentum volutpat morbi facilisis quam scelerisque sapien. Et, penatibus aliquam amet tellus
-            </motion.p>
-            
-            <motion.button 
-              type="button" 
-              className="custom__button"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Explore Menu
-            </motion.button>
-          </motion.div>
-        </div>
-      </motion.div>
+          </div>
+        </motion.div>
+      </div>
     </div>
   );
 };
