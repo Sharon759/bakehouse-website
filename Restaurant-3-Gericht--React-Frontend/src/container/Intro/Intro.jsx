@@ -2,9 +2,8 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable no-lonely-if */
 import React from 'react';
-
+import './Intro.css';
 import { meal } from '../../constants';
-
 
 const Intro = () => {
   const vidRef = React.useRef();

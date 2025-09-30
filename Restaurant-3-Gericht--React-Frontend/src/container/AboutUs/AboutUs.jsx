@@ -137,7 +137,7 @@ const AboutUs = () => {
         </motion.div>
 
         {/* Knife Section with Parallax */}
-        // eslint-disable-next-line no-trailing-spaces
+        
         <motion.div 
           className="app__aboutus-content_knife flex__center"
           variants={knifeVariants}
